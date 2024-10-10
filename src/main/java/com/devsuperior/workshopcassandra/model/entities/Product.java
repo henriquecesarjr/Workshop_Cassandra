@@ -6,6 +6,7 @@ import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 import org.springframework.data.cassandra.core.mapping.Table;
 
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -20,7 +21,7 @@ public class Product {
     private String name;
     private String description;
 
-    private List<@Frozen Prop> props;
+    private List<@Frozen Prop> props = new ArrayList<>();
 
     public Product() {
     }
