@@ -30,4 +30,12 @@ public class DepartmentService {
         return new DepartmentDTO(entity);
     }
 
+    public DepartmentDTO insert(DepartmentDTO dto) {
+        Department entity = new Department();
+        entity.setId(UUID.randomUUID());
+        entity.setName(dto.getName());
+        entity = departmentRepository.save(entity);
+        return new DepartmentDTO(entity);
+    }
+
 }
