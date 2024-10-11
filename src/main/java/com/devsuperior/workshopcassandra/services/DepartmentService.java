@@ -46,4 +46,12 @@ public class DepartmentService {
         return new DepartmentDTO(entity);
     }
 
+    public void deleteById(UUID id) {
+        if (!departmentRepository.existsById(id)) {
+            throw new ResourceNotFoundException("Resource not found");
+        }
+
+        departmentRepository.deleteById(id);
+    }
+
 }
