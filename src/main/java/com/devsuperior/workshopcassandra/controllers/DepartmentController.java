@@ -39,4 +39,10 @@ public class DepartmentController {
                 .path("/{id}").buildAndExpand(dto.getId()).toUri();
         return ResponseEntity.created(uri).body(dto);
     }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<DepartmentDTO> update(@PathVariable UUID id, @RequestBody DepartmentDTO dto) {
+        dto = departmentService.update(id, dto);
+        return ResponseEntity.ok(dto);
+    }
 }
