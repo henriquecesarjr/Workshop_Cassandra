@@ -26,7 +26,26 @@ public class ProductService {
     }
 
     public List<ProductDTO> findByDepartment(String department) {
-        List<Product> list = productRepository.findByDepartment(department);
+        List<Product> list;
+        if ("".equals(department)) {
+            list = productRepository.findAll();
+        } else {
+            list = productRepository.findByDepartment(department);
+        }
+
+
+        return list.stream().map(ProductDTO::new).collect(Collectors.toList());
+    }
+
+    public List<ProductDTO> findByDescription(String text) {
+
+        List<Product> list;
+        if ("".equals(text)) {
+            list = productRepository.findAll();
+        } else {
+            list = productRepository.findByDescription("%"+text+"%");
+        }
+
         return list.stream().map(ProductDTO::new).collect(Collectors.toList());
     }
 }
